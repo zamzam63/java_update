@@ -2,6 +2,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.logging.Logger;
 
 public class FileFilterTest {
 
@@ -53,5 +56,32 @@ public class FileFilterTest {
                 System.out.println(file);
             }
         }
+    }
+
+    @Test
+    public void iterableWithConsumer(){
+        List<String> strings = Arrays.asList("asa", "121", "dasda");
+        //loop over strings
+        for (String s: strings){
+            System.out.println(s);
+        }
+
+        strings.forEach(System.out::println);
+        // no method reference equivalent:
+        strings.forEach(string -> System.out.println("the word is  " + string));
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("hey", 2);
+        map.put("hey22", 3);
+        map.put("h2121212", 5);
+        map.forEach((key, value) -> System.out.println(key + " maps to " + value));
+
+        Logger logger = Logger.getLogger("logger");
+        map.forEach((key, value) -> logger.info(key + " maps to " + value));
+
+        //function "composition" -> put two lambdas together
+        BiConsumer<String, Integer> consolePrint = (key, value) -> System.out.println(key + " maps to " + value);
+        BiConsumer<String, Integer> loggerInfoPrint = (key, value) -> logger.info(key + " maps to " + value);
+        map.forEach(consolePrint.andThen(loggerInfoPrint));
     }
 }
