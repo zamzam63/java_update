@@ -18,7 +18,7 @@ public class FileFilterTest {
     }
 
     @Test
-    public void listFiles_ananoumusFunction(){
+    public void listFiles_anonInnerClass(){
         File[] directories = root.listFiles(new FileFilter(){
             @Override
             public boolean accept(File pathname) {
