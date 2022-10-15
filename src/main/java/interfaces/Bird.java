@@ -1,4 +1,8 @@
 package interfaces;
 
-public interface Bird {
+public interface Bird extends Animal {
+
+    default String speak() {
+        return "chirp";
+    }
 }
