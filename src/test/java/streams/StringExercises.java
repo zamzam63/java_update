@@ -70,7 +70,7 @@ public class StringExercises {
 
         System.out.println(sorted);
 
-        Map<String, Integer> map = strings.stream().collect(Collectors.toMap(Function.identity(), s -> s.length()));
+        Map<String, Integer> map = strings.stream().collect(Collectors.toMap(Function.identity(), String::length));
 
         System.out.println(map);
     }
